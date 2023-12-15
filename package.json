@@ -1,0 +1,60 @@
+{
+  "homepage": "https://www.github.com/zhangyahan/starter-monorepo#readme",
+  "engines": {
+    "node": ">=16.20.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://www.github.com/zhangyahan/starter-monorepo.git"
+  },
+  "bugs": "https://www.github.com/zhangyahan/starter-monorepo/issues",
+  "scripts": {
+    "prepare": "pnpm simple-git-hooks && pnpm run build:packages",
+    "preinstall": "npx only-allow pnpm",
+    "dev:packages": "pnpm -r --parallel --filter=./packages/** run dev",
+    "dev:apps": "pnpm -r --parallel --filter=./apps/** run dev",
+    "build": "pnpm -r run build",
+    "build:packages": "pnpm -r --parallel --filter=./packages/** run build"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.40.2",
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@vue/runtime-dom": "^3.3.11",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "lint-staged": "13.1.2",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.6",
+    "prettier": "^3.0.1",
+    "simple-git-hooks": "^2.9.0",
+    "stylelint": "^15.10.2",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-less": "^1.0.8",
+    "stylelint-order": "^6.0.3",
+    "stylelint-scss": "^5.1.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "preserveUnused": [
+      "commit-msg"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{html,vue}": [
+      "prettier --write",
+      "stylelint --fix",
+      "eslint --fix"
+    ],
+    "*.{css,less,scss}": [
+      "stylelint --fix"
+    ]
+  }
+}

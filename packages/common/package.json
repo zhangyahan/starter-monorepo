@@ -1,0 +1,25 @@
+{
+  "name": "@qx-student-client/common",
+  "type": "module",
+  "version": "1.0.0",
+  "files": ["dist"],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./example": {
+      "import": "./dist/example.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite build -w",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "typescript": "~5.0.4",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.6.4"
+  }
+}
